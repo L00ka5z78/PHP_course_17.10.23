@@ -128,3 +128,15 @@ error_reporting(E_ALL & ~E_WARNING);
 echo $x;
 
 set_error_handler('errorHandler', E_ALL);
+
+
+// httpd-vhost
+##<VirtualHost *:80>
+    ##ServerAdmin webmaster@dummy-host.example.com
+    ##DocumentRoot "C:/xampp/htdocs/dummy-host.example.com" //bylo
+    ##DocumentRoot "C:/xampp/htdocs/programwithgio" //jest wg kursu odkomentowane
+    ##ServerName dummy-host.example.com
+    ##ServerAlias www.dummy-host.example.com
+    ##ErrorLog "logs/dummy-host.example.com-error.log"
+    ##CustomLog "logs/dummy-host.example.com-access.log" common
+##</VirtualHost>
