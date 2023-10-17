@@ -140,3 +140,5 @@ set_error_handler('errorHandler', E_ALL);
     ##ErrorLog "logs/dummy-host.example.com-error.log"
     ##CustomLog "logs/dummy-host.example.com-access.log" common
 ##</VirtualHost>
+
+// AllowOverride None ===>>> httpd file
