@@ -97,18 +97,34 @@
 // }
 
 
-
-
-
-
 /*date and time  **/
-$currentTime = time();
-echo $currentTime . '<br/>';
+// $currentTime = time();
+// echo $currentTime . '<br/>';
 
-echo date('m/d/Y g:ia') . '<br/>';
+// echo date('m/d/Y g:ia') . '<br/>';
 
-echo date('m/d/Y g:ia', mktime(0, 0, 0, 4, 10, null));
-echo date('m/d/Y g:ia', strtotime('2022-02-17 07:00:03'));
-echo '<pre>';
-print_r((date_parse($date)));
-echo '</pre>';
+// echo date('m/d/Y g:ia', mktime(0, 0, 0, 4, 10, null));
+// echo date('m/d/Y g:ia', strtotime('2022-02-17 07:00:03'));
+// echo '<pre>';
+// print_r((date_parse($date)));
+// echo '</pre>';
+
+// error handling
+
+trigger_error("example error", E_USER_WARNING); //display example error
+error_reporting(E_ALL & ~E_WARNING); //no warning displayed
+
+function errorHandler(
+    int $type,
+    string $msg,
+    ?string $file = null,
+    ?int $line = null
+) {
+    echo $type . ': ' . $msg . 'in ' . $file . ' on line ' . $line;
+    exit;
+}
+
+error_reporting(E_ALL & ~E_WARNING);
+echo $x;
+
+set_error_handler('errorHandler', E_ALL);
