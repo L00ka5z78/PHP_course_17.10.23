@@ -60,10 +60,10 @@
 
     <?php if ($score >= 90) : ?>
         <strong>A</strong>
-    <?php else if ($score >= 80) : ?>
+    <?php elseif ($score >= 80) : ?>
         <strong>B</strong>
 
-        <!-- <?php elseif ($score >= 70) : ?>    clean code -->
+    <?php elseif ($score >= 70) : ?> clean code
         <strong>C</strong>
     <?php elseif ($score >= 60) : ?>
         <strong>D</strong>
@@ -73,3 +73,42 @@
 </body>
 
 </html>
+
+<!-- for each loop -->
+<?php
+
+// $user = [
+//     'name' => "gio",
+//     'email' => "gio@email.com",
+//     'skills' => ['php', 'graphql', 'react'],,
+// ];
+
+// foreach ($user as $key => $value) {
+//     echo $key . ': ';
+
+//     if (is_array($value)) {
+//         foreach ($value as $skill) {
+//             echo $skill . ' - ';
+//         }
+//     } else {
+//         echo $value;
+//     }
+//     echo '<br/>';
+// }
+
+
+
+
+
+
+/*date and time  **/
+$currentTime = time();
+echo $currentTime . '<br/>';
+
+echo date('m/d/Y g:ia') . '<br/>';
+
+echo date('m/d/Y g:ia', mktime(0, 0, 0, 4, 10, null));
+echo date('m/d/Y g:ia', strtotime('2022-02-17 07:00:03'));
+echo '<pre>';
+print_r((date_parse($date)));
+echo '</pre>';
