@@ -1,3 +1,5 @@
+### Simple project in PHP during course
+
 Instructions
 Set document root to YOUR_PROJECT/public, that way the site is loaded from public/index.php
 You should include/require all other files in index.php, that's your main file
@@ -17,3 +19,10 @@ Print a simple HTML table containing all the data from the files
 The html skeleton is provided in views/transactions.php file
 The date of the transaction should be in this format "Jan 4, 2021"
 Show income amounts in green color & show expense amounts in red
+
+### result
+
+![2023-10-18](https://github.com/L00ka5z78/PHP_course_17.10.23/assets/110019733/d6c05bef-0b82-4dfa-ab9f-8edebaa767dd)
+
+Nothing fancy, there is nothing more you can do with it. It just displays dummy data from csv file. The problem was to get the data from the file and force it to show on screen.
+
