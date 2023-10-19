@@ -1,6 +1,6 @@
 <?php
 
-namespace PaymentGateway\Paddle;
+namespace app\PaymentGateway\Paddle;
 
 use PaymentGateway\Stripe\Transaction as PaddleTransaction;
 

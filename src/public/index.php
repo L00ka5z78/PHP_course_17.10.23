@@ -2,18 +2,15 @@
 
 declare(strict_types=1);
 
-require_once '../PaymentGateway/Stripe/Transaction.php';
-require_once '../PaymentGateway/Paddle/Transaction.php';
-require_once '../PaymentGateway/Paddle/CustomerProfile.php';
 
-use PaymentGateway\Paddle\{CustomerProfile, Transaction};
-use PaymentGateway\Stripe\Transaction as StripeTransactiion;
+//changing \ into / lower case letter first and right directory
+spl_autoload_register(function ($path) {
+    $path = __DIR__ . '/../' . lcfirst(str_replace('\\', '/', $path)) . '.php';
+});
+
+use App\PaymentGateway\Paddle\Transaction;
+
 
 $paddleTransaction = new Transaction();
-$stripeTransaction = new StripeTransactiion();
-$paddleCustomerProfile = new CustomerProfile();
 
-var_dump($paddleTransaction, $paddleCustomerProfile, $stripeTransaction);
-
-
-// var_dump(new PaymentGateway\Stripe\Transaction());
+var_dump($paddleTransaction);
