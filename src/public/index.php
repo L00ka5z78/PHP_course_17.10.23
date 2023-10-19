@@ -1,16 +1,17 @@
 <?php
 
-declare(strict_types=1);
-
-
-//changing \ into / lower case letter first and right directory
-spl_autoload_register(function ($path) {
-    $path = __DIR__ . '/../' . lcfirst(str_replace('\\', '/', $path)) . '.php';
-});
+require __DIR__ . '/../vendor/autoload.php';
 
 use App\PaymentGateway\Paddle\Transaction;
-
+use Ramsey\Uuid\UuidFactory;    // *********** if using this
 
 $paddleTransaction = new Transaction();
+
+
+$id = new \Ramsey\Uuid\UuidFactory();
+
+// $id = new UuidFactory(); //  do this *******************
+// echo $id->uuid4();
+var_dump($id->uuid4());
 
 var_dump($paddleTransaction);
