@@ -2,31 +2,18 @@
 
 declare(strict_types=1);
 
+require_once '../PaymentGateway/Stripe/Transaction.php';
+require_once '../PaymentGateway/Paddle/Transaction.php';
+require_once '../PaymentGateway/Paddle/CustomerProfile.php';
 
-require_once '../PaymentProfile.php';
-require_once '../Customer.php';
-require_once '../Transaction.php';
+use PaymentGateway\Paddle\{CustomerProfile, Transaction};
+use PaymentGateway\Stripe\Transaction as StripeTransactiion;
 
-// clssses and objects
+$paddleTransaction = new Transaction();
+$stripeTransaction = new StripeTransactiion();
+$paddleCustomerProfile = new CustomerProfile();
 
-// here (..) comes values from class constructor
-// $transaction = new Transaction(100, 'transaction 1');
-// $transaction->addTax(8)->applyDiscount(10);
+var_dump($paddleTransaction, $paddleCustomerProfile, $stripeTransaction);
 
-// $amount = (new Transaction(100, 'transaction 1'));
-// ->addTax(8)
-// ->applyDiscount(10)
-// ->getAmount();
 
-// var_dump($amount);
-
-$transaction = new Transaction(5, "test");
-$profileId = null;
-
-if ($customer = $transaction->getCustomer()) {
-    if ($paymentProfile = $customer->getPaymentProfile()) {
-        $profileId = $paymentProfile->id;
-    }
-}
-
-echo $profileId;
+// var_dump(new PaymentGateway\Stripe\Transaction());
