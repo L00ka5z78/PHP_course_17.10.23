@@ -1,12 +1,13 @@
 <?php
 
-use App\DB;
 use App\PaymentGateway\Paddle\Transaction;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$transaction = new Transaction(25, "transaction 1");
+$transaction = new Transaction(25);
+$reflectionProperty = new ReflectionProperty(Transaction::class, 'amount');
 
-$db = DB::getInstance([]);
-$db = new DB([]);
-$db = new DB([]);
+$reflectionProperty->setAccessible(true);
+var_dump($reflectionProperty->getValue($transaction));
+
+$transaction->process();

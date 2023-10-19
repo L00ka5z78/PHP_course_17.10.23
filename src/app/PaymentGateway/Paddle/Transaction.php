@@ -8,25 +8,24 @@ namespace App\PaymentGateway\Paddle;
 
 class Transaction
 {
-    static private int $count = 0;
+    private float $amount;
 
-    public function __construct(
-        public float $amount,
-        public string $description,
-    ) {
-        self::$count++;
-    }
-    public static function getCount()
+    public function __construct(float $amount)
     {
-        return self::$count;
+        $this->amount = $amount;
     }
+    // public function getAmount(): float
+    // {
+    //     return $this->amount;
+    // }
+
+    // public function setAmount(float $amount): float
+    // {
+    //     return $this->amount = $amount;
+    // }
 
     public function process()
     {
-        array_map(function () {
-            var_dump($this->amount);
-        }, [1]);
-
-        echo 'Processing paddle transaction';
+        echo 'Processing $' . $this->amount .  ' transaction';
     }
 }
