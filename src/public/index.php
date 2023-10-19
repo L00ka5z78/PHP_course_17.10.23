@@ -1,11 +1,12 @@
 <?php
 
-use App\Enums\Status;
+use App\DB;
 use App\PaymentGateway\Paddle\Transaction;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$transaction = new Transaction();
-$transaction->setStatus(Status::PAID);
+$transaction = new Transaction(25, "transaction 1");
 
-var_dump($transaction);
+$db = DB::getInstance([]);
+$db = new DB([]);
+$db = new DB([]);
