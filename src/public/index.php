@@ -21,7 +21,12 @@ require_once '../Transaction.php';
 // var_dump($amount);
 
 $transaction = new Transaction(5, "test");
+$profileId = null;
 
-// $transaction->customer = new Customer();
+if ($customer = $transaction->getCustomer()) {
+    if ($paymentProfile = $customer->getPaymentProfile()) {
+        $profileId = $paymentProfile->id;
+    }
+}
 
-echo $transaction->getCustomer()->getPaymentProfile()->id ?? 'foo';
+echo $profileId;

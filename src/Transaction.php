@@ -42,7 +42,7 @@ class Transaction
     // constructor property promotion
     public function __construct(
         private float $amount,
-        private $description
+        private string $description
     ) {
     }
 
