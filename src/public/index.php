@@ -1,16 +1,10 @@
 <?php
 
-use App\Toaster;
-use App\ToasterPro;
+use App\CollectionAgency;
+use App\Rocky;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$fields = [
-    new \App\Text('textField'),
-    new \App\Checkbox('checkboxField'),
-    new \App\Radio('radioField'),
-];
+$service = new \App\DebtCollectionService();
 
-foreach ($fields as $field) {
-    echo $field->render() . '<br/>';
-}
+echo $service->collectDebt(new Rocky()) . PHP_EOL;
