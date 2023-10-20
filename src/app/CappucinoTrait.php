@@ -10,4 +10,9 @@ trait CappucinoTrait
     {
         echo static::class . ' is making Cappuccino' . PHP_EOL;
     }
+
+    public function makeLatte()
+    {
+        echo static::class . ' is making latte (cappuccino trait)' . PHP_EOL;
+    }
 }
