@@ -7,16 +7,31 @@ namespace App;
 class Invoice
 {
     public float $amount;
+    protected array $data = [];
+
     public function __get(string $name)
     {
-        if (property_exists($this, $name)) {
-            return $this->$name;
+        if (array_key_exists($name, $this->data)) {
+            return $this->data[$name];
         }
         return null;
     }
 
     public function __set(string $name, $value): void
     {
-        var_dump($name, $value);
+        $this->data[$name] = $value;
+    }
+
+    public function __isset(string $name): bool
+    {
+        var_dump('isset');
+        return array_key_exists($name, $this->data);
+    }
+
+    public function __unset(string $name): void
+    {
+        var_dump('unset');
+
+        unset($this->data[$name]);
     }
 }
