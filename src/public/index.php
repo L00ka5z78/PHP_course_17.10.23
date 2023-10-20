@@ -1,12 +1,22 @@
 <?php
 
-use App\CollectionAgency;
-use App\Rocky;
+// namespace App; // when i use this, dont need to write App in the path 
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$invoice = new App\Invoice();
+$coffeeMaker = new \App\CoffeeMaker();
+$coffeeMaker->makeCoffee();
 
-$invoice();
-var_dump($invoice);
-// echo $invoice;
+$latteMaker = new \App\LatteMaker();
+$latteMaker->makeCoffee();
+$latteMaker->makeLatte();
+
+$cappuccinoMaker = new \App\CappuccinoMaker();
+$cappuccinoMaker->makeCoffee();
+$cappuccinoMaker->makeCappuccino();
+
+
+$allInOneCoffeeMaker = new \App\AllInOneCoffeeMaker();
+$allInOneCoffeeMaker->makeCoffee();
+$allInOneCoffeeMaker->makeLatte();
+$allInOneCoffeeMaker->makeCappuccino();
