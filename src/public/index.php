@@ -5,6 +5,7 @@ use App\Rocky;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$service = new \App\DebtCollectionService();
+$invoice = new App\Invoice();
 
-echo $service->collectDebt(new Rocky()) . PHP_EOL;
+$invoice->amount = 15;
+echo $invoice->amount . PHP_EOL;
