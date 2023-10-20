@@ -6,13 +6,26 @@ namespace App;
 
 class Invoice
 {
-    public function __call(string $name, array $arguments)
-    {
-        var_dump($name, $arguments);
-    }
+    //     public function __toString()
+    //     {
+    //         return "hello";
+    //     }
 
-    public static function __callStatic(string $name, array $arguments)
+
+    // public function __inwoke()  // when we try to inwoke object directly
+    // {
+    //     var_dump('inwoked');
+    // }
+
+    private float $amount;
+    private int $id = 1;
+    private string $accountNumber = '45765854563';
+
+    public function __debugInfo(): ?array
     {
-        var_dump('static', $name, $arguments);
+        return [
+            'id' => $this->id,
+            'accountNumber' => '****' . substr($this->accountNumber, -4),
+        ];
     }
 }
