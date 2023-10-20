@@ -20,4 +20,4 @@ $allInOneCoffeeMaker = new \App\AllInOneCoffeeMaker();
 $allInOneCoffeeMaker->makeCoffee();
 $allInOneCoffeeMaker->makeLatte();
 $allInOneCoffeeMaker->makeCappuccino();
-$allInOneCoffeeMaker->makeOriginalLatte();
+// $allInOneCoffeeMaker->makeOriginalLatte();

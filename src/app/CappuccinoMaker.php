@@ -6,5 +6,7 @@ namespace App;
 
 class CappuccinoMaker extends CoffeeMaker
 {
-    use CappucinoTrait;
+    use CappuccinoTrait {
+        CappuccinoTrait::makeCappuccino as public;
+    }
 }
