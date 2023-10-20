@@ -5,9 +5,12 @@ use App\ToasterPro;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$toaster = new ToasterPro();
+$fields = [
+    new \App\Text('textField'),
+    new \App\Checkbox('checkboxField'),
+    new \App\Radio('radioField'),
+];
 
-$toaster->addSlice('bread');
-$toaster->addSlice('bread');
-$toaster->addSlice('bread');
-$toaster->toastBagel();
+foreach ($fields as $field) {
+    echo $field->render() . '<br/>';
+}
