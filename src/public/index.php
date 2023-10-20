@@ -1,13 +1,13 @@
 <?php
 
-use App\PaymentGateway\Paddle\Transaction;
+use App\Toaster;
+use App\ToasterPro;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$transaction = new Transaction(25);
-$reflectionProperty = new ReflectionProperty(Transaction::class, 'amount');
+$toaster = new ToasterPro();
 
-$reflectionProperty->setAccessible(true);
-var_dump($reflectionProperty->getValue($transaction));
-
-$transaction->process();
+$toaster->addSlice('bread');
+$toaster->addSlice('bread');
+$toaster->addSlice('bread');
+$toaster->toastBagel();
