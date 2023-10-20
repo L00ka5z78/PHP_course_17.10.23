@@ -6,7 +6,6 @@ namespace App;
 
 trait CappuccinoTrait
 {
-    use LatteTrait;
 
     private function makeCappuccino()
     {

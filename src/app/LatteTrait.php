@@ -9,14 +9,13 @@ trait LatteTrait
     protected string $milkType = 'whole-milk';
     public function makeLatte()
     {
-        echo static::class . ' is making Latte with ' . $this->getMilkType() . PHP_EOL;
+        echo static::class . ' is making Latte with ' . $this->milkType . PHP_EOL;
     }
 
-    public function getMilkType(): string
+    public function setMilkType(string $milkType): static
     {
-        if (property_exists($this, 'milk-type')) {
-            return $this->milkType;
-        }
-        return '';
+        $this->milkType = $milkType;
+
+        return $this;
     }
 }
