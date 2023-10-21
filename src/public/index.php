@@ -8,6 +8,10 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $invoice = new Invoice();
 
+$str = serialize($invoice);
+
+$invoice2 = unserialize($str);
+
 // echo serialize(true) . PHP_EOL;
 // echo serialize(1) . PHP_EOL;
 // echo serialize(2.25) . PHP_EOL;
@@ -16,4 +20,5 @@ $invoice = new Invoice();
 
 // var_dump(unserialize(serialize(['a' => 1, 'b' => 2, 'c' => 3])));
 
-echo serialize($invoice) . PHP_EOL;
+// echo serialize($invoice) . PHP_EOL;
+var_dump($invoice, $invoice2, $invoice === $invoice2);
