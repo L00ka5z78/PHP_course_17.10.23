@@ -1,6 +1,7 @@
 <?php
 
 use App\Invoice;
+use App\InvoiceCollection;
 use App\Customer;
 use Ramsey\Uuid\Exception\InvalidBytesException;
 
@@ -8,17 +9,13 @@ use Ramsey\Uuid\Exception\InvalidBytesException;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$dateTime1 = new DateTime('05/25/2021 9:15 AM');
-$dateTime2 = new DateTime('05/25/2021 9:14 AM');
+foreach (new App\Invoice(25) as $key => $value) {
+    echo $key . ' = ' . $value . PHP_EOL;
+}
 
-var_dump($dateTime1 < $dateTime2);
-var_dump($dateTime1 > $dateTime2);
-var_dump($dateTime1 == $dateTime2);
-var_dump($dateTime1 <=> $dateTime2);
+$invoiceCollection = new InvoiceCollection([new \App\Invoice(15), new App\Invoice(25), new App\Invoice(50)]);
 
-var_dump($dateTime1->diff($dateTime2));
 
-$from = new DateTime();
-$to = (new DateTime())->add(new DateInterval('P1M'));
-
-echo $from->format('m/d/Y') . ' - ' . $to->format('m/d/Y') . PHP_EOL;
+foreach ($invoiceCollection as $invoice) {
+    echo $invoice->id . ' - ' . $invoice->amount . PHP_EOL;
+}

@@ -8,29 +8,10 @@ use App\Exception\MissingBillingException;
 
 class Invoice
 {
-    private string $id;
+    public string $id;
 
-    public function __construct(
-        public Customer $customer
-    ) {
-    }
-
-    public function process(float $amount): void
+    public function __construct(public float $amount)
     {
-        if ($amount <= 0) {
-            throw new \InvalidArgumentException('INVALID INVOICE amount');
-        }
-        if (empty($this->customer->getBillingInfo())) {
-            throw new MissingBillingException();
-        }
-
-        // if (empty($this->customer->getBillingInfo())) {
-        //     throw new MissingBillingException();
-        // }
-        echo 'Processing $' . $amount . ' invoice - ';
-
-        sleep(1);
-
-        echo 'OKI' . PHP_EOL;
+        $this->id = random_int(10000, 999999);
     }
 }
