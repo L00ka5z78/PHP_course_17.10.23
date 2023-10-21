@@ -10,8 +10,13 @@ class Invoice
 {
     public string $id;
 
-    public function __construct(public float $amount)
+    public function index(): string
     {
-        $this->id = random_int(10000, 999999);
+        return 'Invoices';
+    }
+
+    public function create(): string
+    {
+        return 'CRETE Invoice';
     }
 }

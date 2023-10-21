@@ -9,13 +9,22 @@ use Ramsey\Uuid\Exception\InvalidBytesException;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-foreach (new App\Invoice(25) as $key => $value) {
-    echo $key . ' = ' . $value . PHP_EOL;
-}
-
-$invoiceCollection = new InvoiceCollection([new \App\Invoice(15), new App\Invoice(25), new App\Invoice(50)]);
+// echo '<pre>';
+// print_r($_SERVER);
+// echo '</pre>';
 
 
-foreach ($invoiceCollection as $invoice) {
-    echo $invoice->id . ' - ' . $invoice->amount . PHP_EOL;
-}
+$router = new App\Router();
+
+$router->register('/', [App\Classes\Home::class, 'index'])
+    ->register('/invoices', App\Classes\Invoice::class, 'index')
+    ->register('/invoices/create', App\Classes\Invoice::class, 'create');
+
+// $router->register(
+//     '/invoices',
+//     function () {
+//         echo 'Invoices';
+//     }
+// );
+
+echo $router->resolve($_SERVER['REQUEST_URI']);
