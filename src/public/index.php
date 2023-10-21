@@ -8,12 +8,28 @@ use Ramsey\Uuid\Exception\InvalidBytesException;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-set_exception_handler(function (\Exception $e) {
-    var_dump($e->getMessage());
-});
+$date = '05/12/2022 3:30PM';
 
-echo array_rand([], 1);
+$dateTime = new DateTime($date);
+$dateTime = DateTime::createFromFormat('d/m/Y g:iA', $date);
+$dateTime = DateTime::createFromFormat('d/m/Y', $date)->setTime(0, 0);
 
-$invoice = new Invoice(new Customer());
+// d/m/y - europe
+//m/d/y - usa
 
-$invoice->process(25);
+
+// $dateTime = new DateTime('05/12/2022 3:30PM', new DateTimeZone('Europe/Amsterdam'));
+
+
+
+
+// echo $dateTime->getTimezone()->getName() . ' ' . $dateTime->format('m/d/Y g:i A') . PHP_EOL;
+
+// // var_dump($dateTime);
+
+// $dateTime->setTimezone(new DateTimeZone('Europe/Amsterdam'));
+// $dateTime->setDate(2023, 10, 21)->setTime(2, 16);
+
+// echo $dateTime->format('m/d/Y g:i A') . PHP_EOL;
+
+var_dump($dateTime);
