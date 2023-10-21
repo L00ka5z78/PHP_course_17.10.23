@@ -10,20 +10,29 @@ class Invoice
 {
     private string $id;
 
-
     public function __construct(
-        float $amount,
-        string $description,
-        string $creditCardNumber
+        public float $amount,
+        public string $description,
+        public string $creditCardNumber
     ) {
         $this->id = uniqid('invoice_');
     }
 
-    public function __sleep(): array
+    public function __serialize(): array
     {
-        return ['id', 'amount'];
+        return [
+            'id'               => $this->id,
+            'amount'           => $this->amount,
+            'description'      => $this->description,
+            'creditCardNumber' => base64_encode($this->creditCardNumber),
+        ];
     }
-    public function __wakeup(): void
+
+    public function __unserialize(array $data): void
     {
+        $this->id = $data['id'];
+        $this->amount = $data['amount'];
+        $this->description = $data['description'];
+        $this->creditCardNumber = $data[base64_encode($this->creditCardNumber)];
     }
 }

@@ -24,4 +24,7 @@ $str = serialize($invoice);
 // echo serialize($invoice) . PHP_EOL;
 // var_dump($invoice, $invoice2, $invoice === $invoice2);
 
+$invoice2 = unserialize($str);
+
+
 echo $str . PHP_EOL;
