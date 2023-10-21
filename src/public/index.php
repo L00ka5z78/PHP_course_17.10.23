@@ -8,28 +8,17 @@ use Ramsey\Uuid\Exception\InvalidBytesException;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$date = '05/12/2022 3:30PM';
+$dateTime1 = new DateTime('05/25/2021 9:15 AM');
+$dateTime2 = new DateTime('05/25/2021 9:14 AM');
 
-$dateTime = new DateTime($date);
-$dateTime = DateTime::createFromFormat('d/m/Y g:iA', $date);
-$dateTime = DateTime::createFromFormat('d/m/Y', $date)->setTime(0, 0);
+var_dump($dateTime1 < $dateTime2);
+var_dump($dateTime1 > $dateTime2);
+var_dump($dateTime1 == $dateTime2);
+var_dump($dateTime1 <=> $dateTime2);
 
-// d/m/y - europe
-//m/d/y - usa
+var_dump($dateTime1->diff($dateTime2));
 
+$from = new DateTime();
+$to = (new DateTime())->add(new DateInterval('P1M'));
 
-// $dateTime = new DateTime('05/12/2022 3:30PM', new DateTimeZone('Europe/Amsterdam'));
-
-
-
-
-// echo $dateTime->getTimezone()->getName() . ' ' . $dateTime->format('m/d/Y g:i A') . PHP_EOL;
-
-// // var_dump($dateTime);
-
-// $dateTime->setTimezone(new DateTimeZone('Europe/Amsterdam'));
-// $dateTime->setDate(2023, 10, 21)->setTime(2, 16);
-
-// echo $dateTime->format('m/d/Y g:i A') . PHP_EOL;
-
-var_dump($dateTime);
+echo $from->format('m/d/Y') . ' - ' . $to->format('m/d/Y') . PHP_EOL;
