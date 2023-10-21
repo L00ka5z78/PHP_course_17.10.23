@@ -8,12 +8,12 @@ use Ramsey\Uuid\Exception\InvalidBytesException;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+set_exception_handler(function (\Exception $e) {
+    var_dump($e->getMessage());
+});
+
+echo array_rand([], 1);
+
 $invoice = new Invoice(new Customer());
 
-try {
-    $invoice->process(25);
-} catch (\App\Exception\MissingBillingException | InvalidBytesException $e) {
-    echo $e->getMessage() . PHP_EOL;
-} finally {
-    echo 'Finally block' . PHP_EOL;
-}
+$invoice->process(25);
