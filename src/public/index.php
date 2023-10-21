@@ -6,11 +6,12 @@ use App\CustomInvoice;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$invoice = new Invoice();
-
+$invoice = new Invoice(25, 'Invoice1', '346456347564');
 $str = serialize($invoice);
 
-$invoice2 = unserialize($str);
+// $str = serialize($invoice);
+
+// $invoice2 = unserialize($str);
 
 // echo serialize(true) . PHP_EOL;
 // echo serialize(1) . PHP_EOL;
@@ -21,4 +22,6 @@ $invoice2 = unserialize($str);
 // var_dump(unserialize(serialize(['a' => 1, 'b' => 2, 'c' => 3])));
 
 // echo serialize($invoice) . PHP_EOL;
-var_dump($invoice, $invoice2, $invoice === $invoice2);
+// var_dump($invoice, $invoice2, $invoice === $invoice2);
+
+echo $str . PHP_EOL;
