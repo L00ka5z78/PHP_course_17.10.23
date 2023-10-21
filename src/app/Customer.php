@@ -6,7 +6,7 @@ namespace App;
 
 class Customer
 {
-    public function __construct(private array $billingInfo = [])
+    function __construct(public array $billingInfo = [])
     {
     }
     public function getBillingInfo(): array
