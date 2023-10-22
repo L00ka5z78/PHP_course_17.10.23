@@ -4,21 +4,14 @@ declare(strict_types=1);
 
 namespace App\Classes;
 
+use App\View;
+
 class Home
 {
     public function index()
     {
-        // echo '<pre>';
-        // var_dump($_GET);
-        // echo '</pre>';
-        // echo '<pre>';
-        // var_dump($_REQUEST);
-        // echo '</pre>';
+        $_SESSION['count'] = $_SESSION['count'] + 1;
 
-        // echo '<pre>';
-        // var_dump($_POST);
-        // echo '</pre>';
-
-        return 'HOME';
+        return View::make('index', $_GET)->render();
     }
 }
