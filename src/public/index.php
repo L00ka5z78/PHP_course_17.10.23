@@ -9,17 +9,15 @@ use Ramsey\Uuid\Exception\InvalidBytesException;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-// echo '<pre>';
-// print_r($_SERVER);
-// echo '</pre>';
-
-
 $router = new App\Router();
 
-$router->register('/', [App\Classes\Home::class, 'index'])
-    ->register('/invoices', App\Classes\Invoice::class, 'index')
-    ->register('/invoices/create', App\Classes\Invoice::class, 'create');
+$router
+    ->post('/invoices/create', [App\Classes\Invoice::class, 'store'])
+    ->get('/', [App\Classes\Home::class, 'index'])
+    ->get('/invoices', App\Classes\Invoice::class, 'index')
+    ->get('/invoices/create', App\Classes\Invoice::class, 'create');
+// ->register('/', [App\Classes\Home::class, 'index'])
+// ->register('/invoices', App\Classes\Invoice::class, 'index')
+// ->register('/invoices/create', App\Classes\Invoice::class, 'create');
 
-
-
-echo $router->resolve($_SERVER['REQUEST_URI']);
+echo $router->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));

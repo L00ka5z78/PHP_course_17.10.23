@@ -2,14 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App;
-
-use App\Exception\MissingBillingException;
+namespace App\Classes;
 
 class Invoice
 {
-    public string $id;
-
     public function index(): string
     {
         return 'Invoices';
@@ -17,6 +13,16 @@ class Invoice
 
     public function create(): string
     {
-        return 'CRETE Invoice';
+        return '<form action="/invoices/create" method="post">
+        <label>AMOUNT</label>
+        <input type="text" name="amount/>"
+        </form>';
+    }
+    public function store()
+    {
+        $amount = $_POST['amount'];
+
+
+        var_dump($amount);
     }
 }
