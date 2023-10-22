@@ -1,0 +1,15 @@
+{
+    "name": "dell/php_course_17.10.23",
+    "autoload": {
+        "psr-4": {
+            "Dell\\PhpCourse171023\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lukasz Bolach",
+            "email": "bravo1_lima1@yahoo.com"
+        }
+    ],
+    "require": {}
+}
