@@ -21,3 +21,5 @@ $router
 // ->register('/invoices/create', App\Classes\Invoice::class, 'create');
 
 echo $router->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
+
+session_start();
