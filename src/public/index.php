@@ -13,8 +13,9 @@ session_start();
 $router = new App\Router();
 
 $router
-    ->post('/invoices/create', [App\Classes\Invoice::class, 'store'])
     ->get('/', [App\Classes\Home::class, 'index'])
+    ->post('/upload', [App\Classes\Home::class, 'upload'])
+    ->post('/invoices/create', [App\Classes\Invoice::class, 'store'])
     ->get('/invoices', App\Classes\Invoice::class, 'index')
     ->get('/invoices/create', App\Classes\Invoice::class, 'create');
 // ->register('/', [App\Classes\Home::class, 'index'])

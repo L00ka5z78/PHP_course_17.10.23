@@ -10,14 +10,15 @@ class Home
 {
     public function index()
     {
-        setcookie(
-            'userName',
-            'Gio',
-            time() + 10,
-            // [
-            // expiresin ,path, domain, secure, httponly
-            // ]
-        );
-        return View::make('index', $_GET)->render();
+
+        return <<<FORM
+        <form action="/upload" method="post>
+            <input type="file" name="receipt" />
+            <button type="submit">Upload</button>
+        </form>
+        FORM;
+    }
+    public function upload()
+    {
     }
 }
