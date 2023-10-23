@@ -8,6 +8,8 @@ class Invoice
 {
     public function index(): string
     {
+        unset($_SESSION['count']);
+        var_dump($_SESSION);
         return 'Invoices';
     }
 
@@ -21,7 +23,6 @@ class Invoice
     public function store()
     {
         $amount = $_POST['amount'];
-
 
         var_dump($amount);
     }

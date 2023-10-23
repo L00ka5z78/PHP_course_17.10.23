@@ -10,8 +10,15 @@ class Home
 {
     public function index()
     {
-        $_SESSION['count'] = $_SESSION['count'] + 1;
-
+        setcookie(
+            'userName',
+            'Gio',
+            time() + 10,
+            '/',
+            '',
+            false,
+            false
+        );
         return View::make('index', $_GET)->render();
     }
 }
