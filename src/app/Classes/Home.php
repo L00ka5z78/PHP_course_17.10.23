@@ -14,10 +14,9 @@ class Home
             'userName',
             'Gio',
             time() + 10,
-            '/',
-            '',
-            false,
-            false
+            // [
+            // expiresin ,path, domain, secure, httponly
+            // ]
         );
         return View::make('index', $_GET)->render();
     }
