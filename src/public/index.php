@@ -15,11 +15,11 @@ define('STORAGE_PATH', __DIR__ . '/../storage');
 $router = new App\Router();
 
 $router
-    ->get('/', [App\Classes\Home::class, 'index'])
-    ->post('/upload', [App\Classes\Home::class, 'upload'])
-    ->post('/invoices/create', [App\Classes\Invoice::class, 'store'])
-    ->get('/invoices', App\Classes\Invoice::class, 'index')
-    ->get('/invoices/create', App\Classes\Invoice::class, 'create');
+    ->get('/', [App\Classes\HomeController::class, 'index'])
+    ->post('/upload', [App\Classes\HomeController::class, 'upload'])
+    ->post('/invoices/create', [App\Classes\InvoiceController::class, 'store'])
+    ->get('/invoices', App\Classes\InvoiceController::class, 'index')
+    ->get('/invoices/create', App\Classes\InvoiceController::class, 'create');
 // ->register('/', [App\Classes\Home::class, 'index'])
 // ->register('/invoices', App\Classes\Invoice::class, 'index')
 // ->register('/invoices/create', App\Classes\Invoice::class, 'create');
