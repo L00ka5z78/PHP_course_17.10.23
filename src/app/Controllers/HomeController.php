@@ -8,13 +8,19 @@ use App\View;
 
 class HomeController
 {
-    public function index()
+    public function index(): View
     {
-
-        return <<<FORM
-   
-        FORM;
+        return  View::make('index');
     }
+
+    public function download()
+    {
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment;filename="myfile.pdf"');
+
+        readfile(STORAGE_PATH . '/recepit 6-20-2021.pdf');
+    }
+
     public function upload()
     {
         echo '<pre>';
@@ -30,9 +36,7 @@ class HomeController
             STORAGE_PATH . '/' . $_FILES['receipt']['name'],
             $filePath
         );
-
-        echo '<pre>';
-        var_dump(pathinfo($filePath));
-        echo '</pre>';
+        header('Location: /');
+        exit;
     }
 }

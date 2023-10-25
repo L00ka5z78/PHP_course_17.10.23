@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\View;
+
 class InvoiceController
 {
-    public function index(): string
+    public function index(): View
     {
-        unset($_SESSION['count']);
-        var_dump($_SESSION);
-        return 'Invoices';
+
+        return  View::make('invoices/index');
     }
 
-    public function create(): string
+    public function create(): View
     {
-        return '';
+        return  View::make('invoices/create');
     }
     public function store()
     {
