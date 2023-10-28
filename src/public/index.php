@@ -10,7 +10,9 @@ use App\View;
 // namespace App; // when i use this, dont need to write App in the path 
 
 require __DIR__ . '/../vendor/autoload.php';
-session_start();
+
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
 
 define('VIEW_PATH', __DIR__ . '/../views');
 define('STORAGE_PATH', __DIR__ . '/../storage');
