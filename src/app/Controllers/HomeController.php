@@ -5,11 +5,36 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\View;
+use PDO;
+use PDOException;
 
 class HomeController
 {
     public function index(): View
     {
+        try {
+            $db = new PDO('mysql:host=localhost;dbname=my_db', 'root', 'root', [
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+            ]);
+            $email = 'abc@ex.con';
+            $name = 'jane doe';
+            $isActive = 1;
+            $createdAt = date('Y-m-d H:m:i', strtotime('07/11/2021 9:00'));
+            $query = "INSERT INTO users (email, full_name, is_active, creaated_at) VALUES (?, ?, ?, ?)";
+
+            $stmt = $db->prepare($query);
+            $stmt->execute([$email, $name, $isActive, $createdAt]);
+            $id = (int) $db->lastInsertId();
+            $user = $db->query("SELECT * FROM user WHERE id = " . $id);
+            foreach ($db->query($query) as $user) {
+                echo '<pre>';
+                var_dump($user);
+                echo '</pre>';
+            }
+        } catch (\PDOException $e) {
+            throw new PDOException($e->getMessage(), $e->getCode());
+        }
+        var_dump($db);
         return  View::make('index');
     }
 
