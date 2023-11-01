@@ -10,6 +10,7 @@ use PDO;
 use PDOException;
 use App\Models\Invoice;
 use App\Models\User;
+use App\Models\SignUp;
 
 class HomeController
 {
@@ -32,6 +33,6 @@ class HomeController
             ]
         );
 
-        return View::make('index', ['invooice' => $invoiceModel->find($invoiceId)]);
+        return View::make('index', ['invoice' => $invoiceModel->find($invoiceId)]);
     }
 }
