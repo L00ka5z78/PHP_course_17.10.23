@@ -10,6 +10,12 @@
 
 <body>
     Home Page
+    <hr />
+    <div>
+        <?php if (!empty($invoice)) : ?>
+            INVOICE ID </= $invoice['id'] ?> <br />
+        <?php endif ?>
+    </div>
 </body>
 
 </html>
