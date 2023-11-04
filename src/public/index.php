@@ -1,33 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 use App\App;
-use App\Invoice;
-use App\InvoiceCollection;
-use App\Customer;
-use App\Exceptions\RouteNotFoundException;
-use Ramsey\Uuid\Exception\InvalidBytesException;
-use App\Router;
 use App\Config;
+use App\Container;
+use App\Controllers\HomeController;
+use App\Router;
 
-// namespace App; // when i use this, dont need to write App in the path 
-
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-define('VIEW_PATH', __DIR__ . '/../views');
 define('STORAGE_PATH', __DIR__ . '/../storage');
+define('VIEW_PATH', __DIR__ . '/../views');
 
-$router = new Router();
+$container = new Container();
+$router    = new Router($container);
 
 $router
-    ->get('/', [App\Classes\HomeController::class, 'index'])
-    ->get('/download', [App\Controllers\HomeController::class, 'download'])
-    ->post('/upload', [App\Classes\HomeController::class, 'upload'])
-    ->post('/invoices/create', [App\Classes\InvoiceController::class, 'store'])
-    ->get('/invoices', App\Classes\InvoiceController::class, 'index')
-    ->get('/invoices/create', App\Classes\InvoiceController::class, 'create');
+    ->get('/', [HomeController::class, 'index']);
+
 (new App(
     $router,
     ['uri' => $_SERVER['REQUEST_URI'], 'method' => $_SERVER['REQUEST_METHOD']],
