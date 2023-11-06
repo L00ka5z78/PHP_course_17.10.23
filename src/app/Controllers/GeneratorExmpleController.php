@@ -6,6 +6,8 @@ namespace App\Controllers;
 
 use App\Models\Ticket;
 use Generator;
+use App\Attributes\Route;
+
 
 class GeneratorExampleController
 {
@@ -13,6 +15,7 @@ class GeneratorExampleController
     {
     }
 
+    #[Route('/examples/generator')]
     public function index()
     {
         $tickets = $this->ticketModel->all();
