@@ -4,38 +4,22 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\InvoiceStatus;
 use App\Model;
+use PDO;
 
 class Invoice extends Model
 {
-
-
-    public function create(float $amount, int $userId): int
-    {
-
-        $stmt = $this->db->prepare(
-            "INSERT INTO invoices (amount, user_id)
-            VALUES (?, ?)"
-        );
-        $stmt->execute([$amount,  $userId]);
-
-
-        // $newUserStmt->execute([$email, $name]);
-
-        return (int) $this->db->lastInsertId();
-    }
-
-    public function find(int $invoiceId): array
+    public function all(InvoiceStatus $status): array
     {
         $stmt = $this->db->prepare(
-            "SELECT invoices.id, amount, full_name FROM invoices
-            LEFT JOIN users ON users.id = user_id
-            WHERE invoices.id = ?"
+            'SELECT id, invoice_number, amount, status
+             FROM invoices
+             WHERE status = ?'
         );
 
-        $stmt->execute([$invoiceId]);
+        $stmt->execute([$status->value]);
 
-        $invoice = $stmt->fetch();
-        return $invoice ? $invoice : [];
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }
