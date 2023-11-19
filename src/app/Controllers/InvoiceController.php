@@ -4,30 +4,18 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Attributes\Route;
-use App\Models\Ticket;
-use Generator;
+use App\Attributes\Get;
+use App\Enums\InvoiceStatus;
+use App\Models\Invoice;
+use App\View;
 
-class GeneratorExampleController
+class InvoiceController
 {
-    public function __construct(private Ticket $ticketModel)
+    #[Get('/invoices')]
+    public function index(): View
     {
-    }
+        $invoices = (new Invoice())->all(InvoiceStatus::Paid);
 
-    #[Route('/examples/generator')]
-    public function index()
-    {
-        $tickets = $this->ticketModel->all();
-
-        foreach ($tickets as $ticket) {
-            echo $ticket['id'] . ': ' . substr($ticket['content'], 0, 15) . '<br />';
-        }
-    }
-
-    private function lazyRange(int $start, int $end): Generator
-    {
-        for ($i = $start; $i <= $end; $i++) {
-            yield $i;
-        }
+        return View::make('invoices/index', ['invoices' => $invoices]);
     }
 }

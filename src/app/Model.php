@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App;
 
+use PDOStatement;
+
 abstract class Model
 {
     protected DB $db;
@@ -13,7 +15,7 @@ abstract class Model
         $this->db = App::db();
     }
 
-    public function fetchLazy(\PDOStatement $stmt)
+    public function fetchLazy(PDOStatement $stmt): \Generator
     {
         foreach ($stmt as $record) {
             yield $record;
