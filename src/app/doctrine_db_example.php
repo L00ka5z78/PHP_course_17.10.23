@@ -20,12 +20,5 @@ $connectionParams = [
 
 $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams);
 
-$builder = $conn->createQueryBuilder();
-
-$invoices = $builder
-	->select('id', 'amount')
-	->from('invoices')
-	->where('amount > ?')
-	->setParameter(0, 6000)
-	->fetchAllAssociative();
-var_dump($invoices);
+$schema = $conn->createSchemaManager();
+var_dump($schema->listTableNames());
