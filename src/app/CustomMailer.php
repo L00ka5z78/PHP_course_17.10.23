@@ -21,10 +21,10 @@ class CustomMailer implements MailerInterface
 
     public function send(RawMessage $message, Envelope $envelope = null): void
     {
-        //... some logic
+        //... some logics
 
         $this->transport->send($message, $envelope);
 
-        // ... some more logic
+        // ... some more logics
     }
 }
