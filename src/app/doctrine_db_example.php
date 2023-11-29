@@ -22,32 +22,32 @@ $params = [
 ];
 $entityManager =  EntityManager::create($params, $setup::createAttributeMetadataConfiguration([__DIR__ . '/Entity']));
 
+$queryBuilder = $entityManager->createQueryBuilder();
 
-$items = [['Item 1', 1, 15], ['Item 2', 2, 7.5], ['Item 3', 4, 3.75]];
+$query = $queryBuilder
+	->select('i', 'it')
+	->from(Invoice::class, 'i')->where('i.amount > :amount')
+	->join('i.items', 'it')
+	->where(
+		$queryBuilder->expr()->andX(
+			$queryBuilder->expr()->gt('i.amount', ':amount'),
+			$queryBuilder->expr()->orX(
+				$queryBuilder->expr()->eq('i.status', ':status'),
+				$queryBuilder->expr()->gte('i.createdAt', ':date'),
+			)
+		)
+	)
+	->setParameter('amount', 100)
+	->setParameter('status', InvoiceStatus::Paid->value)
+	->orderBy('i.createdAt', 'desc')
+	->getQuery();
 
-$invoice = (new \App\Entity\Invoice())
-	->setAmount(45)
-	->setInvoiceNumber('1')
-	->setStatus(InvoiceStatus::Pending)
-	->setCreatedAt(new DateTime());
+$invoice = $query->getResult();
 
-foreach ($items as [$description, $quantity, $unitPrice]) {
-	$item = (new \App\Entity\InvoiceItem())
-		->setDescription($description)
-		->setQuantity($quantity)
-		->setUnitPrice($unitPrice);
-
-	$invoice->addItem($item);
-	$entityManager->persist($item);
+/** @var Invoice $invoice */
+foreach ($invoices as $invoice) {
+	echo $invoice->getCreatedAt()->format('m/d/Y g:ia')
+		. ', ' . $item->getDescription()
+		. ', ' . $item->getQuantity()
+		. ', ' . $item->getUnitPrice() . PHP_EOL;
 }
-$entityManager->persist($invoice);
-$entityManager->flush();
-
-$entityManager->remove($invoice);
-
-$invoice->getItems()->get(0)->setDescription('FOOBar');
-
-
-$entityManager->flush();
-
-echo $entityManager->getUnitOfWork->size();
